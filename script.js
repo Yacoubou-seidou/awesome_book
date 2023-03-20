@@ -2,6 +2,7 @@ const bookName = document.querySelector('#book-name');
 const bookAuthor = document.querySelector('#book-author');
 const addButton = document.querySelector('#add_book');
 const booksContainer = document.querySelector('#books_section');
+const bookForm = document.querySelector('.book-form');
 
 let bookList = [];
 const localData = localStorage.getItem('books');
@@ -46,8 +47,7 @@ addButton.addEventListener('click', () => {
   const bookNameInput = bookName.value;
   const bookAuthorInput = bookAuthor.value;
   addBook(bookNameInput, bookAuthorInput);
-  bookAuthor.value = '';
-  bookName.value = '';
+  bookForm.reset();
 });
 
 function loadBooks(bookList) {
