@@ -1,5 +1,6 @@
-class bookList {
+class BookList {
   bookList = [];
+
   constructor() {
     this.bookNameInput = document.querySelector('#book-name');
     this.bookAuthorInput = document.querySelector('#book-author');
@@ -22,10 +23,10 @@ class bookList {
     const bookContainer = document.createElement('div');
     bookContainer.classList.add('book_container');
     bookContainer.classList.add(`book${id}`);
-    if (id % 2 == 0) {
-      bookContainer.classList.add(`dark-bg`);
+    if (id % 2 === 0) {
+      bookContainer.classList.add('dark-bg');
     }
-    bookContainer.classList.add(`book-item`);
+    bookContainer.classList.add('book-item');
     const bookDetails = document.createElement('p');
     bookDetails.innerHTML = `
       "${bookName}" by ${bookAuthor}
@@ -48,12 +49,11 @@ class bookList {
     book.title = bookName;
     book.author = bookAuthor;
     this.bookList.push(book);
-    this.localData
     localStorage.setItem('books', JSON.stringify(this.bookList));
     this.addBookToPage(bookName, bookAuthor, this.bookList.length - 1);
   }
 }
-const bookObj = new bookList();
+const bookObj = new BookList();
 
 function loadBooks(bookList) {
   for (let i = 0; i < bookList.length; i += 1) {
