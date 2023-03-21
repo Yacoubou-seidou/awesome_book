@@ -10,7 +10,7 @@
 
 # 📗 Table of Contents
 
-- [� Table of Contents](#-table-of-contents)
+- [📗 Table of Contents](#-table-of-contents)
 - [📖 \[Awesome Book\] ](#-awesome-book-)
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
@@ -33,7 +33,7 @@
 
 > Describe your project in 1 or 2 sentences.
 
-**[Awesome Book]** is a...
+**[Awesome Book]** is a webpage for storing and displying books  from the localStorage of the browser
 
 ## 🛠 Built With <a name="built-with"></a>
 
