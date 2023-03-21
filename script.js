@@ -1,55 +1,63 @@
-const bookNameInput = document.querySelector('#book-name');
-const bookAuthorInput = document.querySelector('#book-author');
-const addButton = document.querySelector('#add_book');
-const booksContainer = document.querySelector('#books_section');
-const bookForm = document.querySelector('.book-form');
+class BookList {
+  bookList = [];
 
-let bookList = [];
-const localData = localStorage.getItem('books');
-if (localData) {
-  bookList = JSON.parse(localData);
+  constructor() {
+    this.bookNameInput = document.querySelector('#book-name');
+    this.bookAuthorInput = document.querySelector('#book-author');
+    this.addButton = document.querySelector('#add_book');
+    this.booksContainer = document.querySelector('#books_section');
+    this.bookForm = document.querySelector('.book-form');
+    this.localData = localStorage.getItem('books');
+
+    if (this.localData) {
+      this.bookList = JSON.parse(this.localData);
+    }
+
+    this.addButton.addEventListener('click', () => {
+      this.addBook(this.bookNameInput.value, this.bookAuthorInput.value);
+      this.bookForm.reset();
+    });
+  }
+
+  addBookToPage(bookName, bookAuthor, id) {
+    const bookContainer = document.createElement('div');
+    bookContainer.classList.add('book_container');
+    bookContainer.classList.add(`book${id}`);
+    if (id % 2 === 0) {
+      bookContainer.classList.add('dark-bg');
+    }
+    bookContainer.classList.add('book-item');
+    const bookDetails = document.createElement('p');
+    bookDetails.innerHTML = `
+      "${bookName}" by ${bookAuthor}
+    `;
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove';
+    bookContainer.appendChild(bookDetails);
+    bookContainer.appendChild(removeButton);
+    this.booksContainer.appendChild(bookContainer);
+    removeButton.addEventListener('click', () => {
+      this.bookList.splice(id, 1);
+      localStorage.setItem('books', JSON.stringify(this.bookList));
+      this.booksContainer.removeChild(bookContainer);
+    });
+  }
+
+  // Add book to booklist, update local storage and page view
+  addBook(bookName, bookAuthor) {
+    const book = {};
+    book.title = bookName;
+    book.author = bookAuthor;
+    this.bookList.push(book);
+    localStorage.setItem('books', JSON.stringify(this.bookList));
+    this.addBookToPage(bookName, bookAuthor, this.bookList.length - 1);
+  }
 }
-
-function addBookToPage(bookName, bookAuthor, id) {
-  const bookContainer = document.createElement('div');
-  bookContainer.classList.add('book_container');
-  bookContainer.classList.add(`book${id}`);
-  const bookDetails = document.createElement('p');
-  bookDetails.innerHTML = `
-    ${bookName}<br>${bookAuthor}
-  `;
-  const removeButton = document.createElement('button');
-  removeButton.textContent = 'Remove';
-  const breakLine = document.createElement('hr');
-  bookContainer.appendChild(bookDetails);
-  bookContainer.appendChild(removeButton);
-  bookContainer.appendChild(breakLine);
-  booksContainer.appendChild(bookContainer);
-  removeButton.addEventListener('click', () => {
-    bookList.splice(id, 1);
-    localStorage.setItem('books', JSON.stringify(bookList));
-    booksContainer.removeChild(bookContainer);
-  });
-}
-
-// Add book to booklist, update local storage and page view
-function addBook(bookName, bookAuthor) {
-  const book = {};
-  book.title = bookName;
-  book.author = bookAuthor;
-  bookList.push(book);
-  localStorage.setItem('books', JSON.stringify(bookList));
-  addBookToPage(bookName, bookAuthor, bookList.length - 1);
-}
-
-addButton.addEventListener('click', () => {
-  addBook(bookNameInput.value, bookAuthorInput.value);
-  bookForm.reset();
-});
+const bookObj = new BookList();
 
 function loadBooks(bookList) {
   for (let i = 0; i < bookList.length; i += 1) {
-    addBookToPage(bookList[i].title, bookList[i].author, i);
+    bookObj.addBookToPage(bookList[i].title, bookList[i].author, i);
   }
 }
-loadBooks(bookList);
+loadBooks(bookObj.bookList);
