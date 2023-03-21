@@ -1,5 +1,5 @@
-const bookName = document.querySelector('#book-name');
-const bookAuthor = document.querySelector('#book-author');
+const bookNameInput = document.querySelector('#book-name');
+const bookAuthorInput = document.querySelector('#book-author');
 const addButton = document.querySelector('#add_book');
 const booksContainer = document.querySelector('#books_section');
 const bookForm = document.querySelector('.book-form');
@@ -15,13 +15,11 @@ function addBookToPage(bookName, bookAuthor, id) {
   bookContainer.classList.add('book_container');
   bookContainer.classList.add(`book${id}`);
   const bookDetails = document.createElement('p');
-  const bookNameInput = bookName;
-  const bookAuthorInput = bookAuthor;
   bookDetails.innerHTML = `
-    ${bookNameInput}<br>${bookAuthorInput}
+    ${bookName}<br>${bookAuthor}
   `;
   const removeButton = document.createElement('button');
-  removeButton.innerHTML = 'Remove';
+  removeButton.textContent = 'Remove';
   const breakLine = document.createElement('hr');
   bookContainer.appendChild(bookDetails);
   bookContainer.appendChild(removeButton);
@@ -34,6 +32,7 @@ function addBookToPage(bookName, bookAuthor, id) {
   });
 }
 
+// Add book to booklist, update local storage and page view
 function addBook(bookName, bookAuthor) {
   const book = {};
   book.title = bookName;
@@ -44,9 +43,7 @@ function addBook(bookName, bookAuthor) {
 }
 
 addButton.addEventListener('click', () => {
-  const bookNameInput = bookName.value;
-  const bookAuthorInput = bookAuthor.value;
-  addBook(bookNameInput, bookAuthorInput);
+  addBook(bookNameInput.value, bookAuthorInput.value);
   bookForm.reset();
 });
 
