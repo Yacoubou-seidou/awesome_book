@@ -28,5 +28,5 @@ contactLink.addEventListener('click', () => {
 });
 
 const dateContainer = document.querySelector('.date-container');
-dateContainer.innerHTML = new Date();
+dateContainer.innerHTML = new Date().toString().slice(0, 34);
 bookObj.loadBooks();
