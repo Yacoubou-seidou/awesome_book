@@ -1,14 +1,10 @@
+/* ---- global styles ---- */
 * {
   box-sizing: border-box;
   margin: 0;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
+/* ---- Navbar ---- */
 .nav-header {
   padding: 5px 10px;
 }
@@ -28,11 +24,6 @@ body {
   gap: 8px;
 }
 
-.date-container {
-  padding: 5px;
-  text-align: right;
-}
-
 .menu-item {
   cursor: pointer;
   padding: 3px;
@@ -45,9 +36,20 @@ body {
   width: 100%;
 }
 
+/* ---- Date ---- */
+.date-container {
+  padding: 5px;
+  text-align: right;
+}
+
+/* ---- Book List ---- */
+.book-list-section {
+  margin-top: 50px;
+}
+
 .main-header {
   text-align: center;
-  margin: 30px 0;
+  margin: 20px 0 30px;
 }
 
 .book-container {
@@ -76,37 +78,19 @@ body {
   margin: 8px;
 }
 
+.dark-bg {
+  background-color: rgb(233, 233, 233);
+}
+
+/* ---- Add Book Form ---- */
 .book-form {
   display: none;
   flex-direction: column;
   align-items: center;
   width: 200px;
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 50px;
   margin-bottom: 30px;
-}
-
-.contact_details {
-  padding: 10px;
-}
-
-.contact_details p {
-  margin: 20px 0;
-}
-
-.dark-bg {
-  background-color: rgb(233, 233, 233);
-}
-
-.hr-line {
-  width: 100px;
-  margin: 0 auto;
-  height: 2px;
-  background-color: #000;
-}
-
-#add_book {
-  align-self: flex-end;
 }
 
 .form_header {
@@ -119,19 +103,38 @@ body {
   width: 100%;
 }
 
+#add_book {
+  align-self: flex-end;
+}
+
+/* ---- Contact Section ---- */
 .contact-section {
   display: none;
   margin: 5px;
   flex-direction: column;
   align-items: center;
   padding-bottom: 20px;
+  margin-top: 50px;
 }
 
 .contact-section h2 {
+  padding: 20px;
+}
+
+.contact_details {
   padding: 10px;
 }
 
+.contact_details p {
+  margin: 20px 0;
+}
+
+/* ---- Footer ---- */
 footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
   margin: 5px;
   padding: 5px 10px;
   border: 2px solid #000;
