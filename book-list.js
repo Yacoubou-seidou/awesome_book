@@ -40,6 +40,7 @@ class BookList {
       this.bookList.splice(id, 1);
       localStorage.setItem('books', JSON.stringify(this.bookList));
       this.booksContainer.removeChild(bookContainer);
+      this.loadBooks();
     });
   }
 
@@ -51,6 +52,13 @@ class BookList {
     this.bookList.push(book);
     localStorage.setItem('books', JSON.stringify(this.bookList));
     this.addBookToPage(bookName, bookAuthor, this.bookList.length - 1);
+  }
+
+  loadBooks(bookList = this.bookList) {
+    this.booksContainer.textContent = '';
+    for (let i = 0; i < bookList.length; i += 1) {
+      this.addBookToPage(bookList[i].title, bookList[i].author, i);
+    }
   }
 }
 
