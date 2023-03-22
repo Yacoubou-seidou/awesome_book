@@ -3,6 +3,12 @@
   margin: 0;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
 .nav-header {
   padding: 5px 10px;
 }
@@ -24,6 +30,7 @@
 
 .date-container {
   padding: 5px;
+  text-align: right;
 }
 
 .menu-item {
@@ -79,6 +86,14 @@
   margin-bottom: 30px;
 }
 
+.contact_details {
+  padding: 10px;
+}
+
+.contact_details p {
+  margin: 20px 0;
+}
+
 .dark-bg {
   background-color: rgb(233, 233, 233);
 }
@@ -107,6 +122,9 @@
 .contact-section {
   display: none;
   margin: 5px;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
 }
 
 .contact-section h2 {
@@ -117,4 +135,5 @@ footer {
   margin: 5px;
   padding: 5px 10px;
   border: 2px solid #000;
+  justify-self: end;
 }

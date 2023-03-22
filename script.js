@@ -23,7 +23,7 @@ AddNewLink.addEventListener('click', () => {
 
 contactLink.addEventListener('click', () => {
   bookListSection.style.display = 'none';
-  contactSection.style.display = 'block';
+  contactSection.style.display = 'flex';
   formContainer.style.display = 'none';
 });
 
