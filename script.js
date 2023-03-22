@@ -1,63 +1,32 @@
-class BookList {
-  bookList = [];
+import BookList from './book-list.js';
 
-  constructor() {
-    this.bookNameInput = document.querySelector('#book-name');
-    this.bookAuthorInput = document.querySelector('#book-author');
-    this.addButton = document.querySelector('#add_book');
-    this.booksContainer = document.querySelector('#books_section');
-    this.bookForm = document.querySelector('.book-form');
-    this.localData = localStorage.getItem('books');
-
-    if (this.localData) {
-      this.bookList = JSON.parse(this.localData);
-    }
-
-    this.addButton.addEventListener('click', () => {
-      this.addBook(this.bookNameInput.value, this.bookAuthorInput.value);
-      this.bookForm.reset();
-    });
-  }
-
-  addBookToPage(bookName, bookAuthor, id) {
-    const bookContainer = document.createElement('div');
-    bookContainer.classList.add('book_container');
-    bookContainer.classList.add(`book${id}`);
-    if (id % 2 === 0) {
-      bookContainer.classList.add('dark-bg');
-    }
-    bookContainer.classList.add('book-item');
-    const bookDetails = document.createElement('p');
-    bookDetails.innerHTML = `
-      "${bookName}" by ${bookAuthor}
-    `;
-    const removeButton = document.createElement('button');
-    removeButton.textContent = 'Remove';
-    bookContainer.appendChild(bookDetails);
-    bookContainer.appendChild(removeButton);
-    this.booksContainer.appendChild(bookContainer);
-    removeButton.addEventListener('click', () => {
-      this.bookList.splice(id, 1);
-      localStorage.setItem('books', JSON.stringify(this.bookList));
-      this.booksContainer.removeChild(bookContainer);
-    });
-  }
-
-  // Add book to booklist, update local storage and page view
-  addBook(bookName, bookAuthor) {
-    const book = {};
-    book.title = bookName;
-    book.author = bookAuthor;
-    this.bookList.push(book);
-    localStorage.setItem('books', JSON.stringify(this.bookList));
-    this.addBookToPage(bookName, bookAuthor, this.bookList.length - 1);
-  }
-}
 const bookObj = new BookList();
+const formContainer = document.querySelector('.book-form');
+const bookListSection = document.querySelector('.book-list-section');
+const contactSection = document.querySelector('.contact-section');
 
-function loadBooks(bookList) {
-  for (let i = 0; i < bookList.length; i += 1) {
-    bookObj.addBookToPage(bookList[i].title, bookList[i].author, i);
-  }
-}
-loadBooks(bookObj.bookList);
+const listLink = document.querySelector('#list-btn');
+const AddNewLink = document.querySelector('#add-btn');
+const contactLink = document.querySelector('#contact-btn');
+
+listLink.addEventListener('click', () => {
+  bookListSection.style.display = 'block';
+  formContainer.style.display = 'none';
+  contactSection.style.display = 'none';
+});
+
+AddNewLink.addEventListener('click', () => {
+  bookListSection.style.display = 'none';
+  formContainer.style.display = 'flex';
+  contactSection.style.display = 'none';
+});
+
+contactLink.addEventListener('click', () => {
+  bookListSection.style.display = 'none';
+  contactSection.style.display = 'flex';
+  formContainer.style.display = 'none';
+});
+
+const dateContainer = document.querySelector('.date-container');
+dateContainer.innerHTML = new Date().toString().slice(0, 34);
+bookObj.loadBooks();
