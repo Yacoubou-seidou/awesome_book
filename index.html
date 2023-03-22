@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,13 +8,28 @@
   <link rel="stylesheet" href="style.css">
   <title>Awesome Books</title>
 </head>
-<body>
-  <div class="main_container">
-    <h1 class="main-header">Awesome Books</h1>
-    <div class="book-container" id="books_section">
 
-    </div>
-    <hr class="hr-line">
+<body>
+  <header>
+    <nav class="nav-container">
+      <h1 class="nav-header">Awesome Books</h1>
+      <ul class="nav-menu">
+        <li class="menu-item" id="list-btn">List</li>
+        <li> | </li>
+        <li class="menu-item" id="add-btn">Add New</li>
+        <li> | </li>
+        <li class="menu-item" id="contact-btn">Contact</li>
+      </ul>
+    </nav>
+  </header>
+  <div class="date-container"></div>
+  <main class="main_container">
+    <section class="book-list-section">
+      <h2 class="main-header">Awesome Books</h2>
+      <div class="book-container" id="books_section">
+
+      </div>
+    </section>
 
     <form action="#" class="book-form">
       <h2 class="form_header">Add a new book</h2>
@@ -21,7 +37,19 @@
       <input id="book-author" type="text" class="input_item" placeholder="Author"><br><br>
       <button type="submit" id="add_book">Add</button>
     </form>
-  </div>
+
+    <section class="contact-section">
+      <h2>Contact Information</h2>
+      <p>
+        
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <h3>Copyright 2023</h2>
+  </footer>
 </body>
 <script src="script.js" type="module"></script>
+
 </html>
